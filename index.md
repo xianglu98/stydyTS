@@ -24,5 +24,5 @@ console.log(CardSuit[CardSuit.Spades]); //  Spades
 //  字符串枚举   不可以反向映射
 console.log(EvidenceTypeEnum); // {UNKNOWN: "as", PASSPORT_VISA: "passport_visa", PASSPORT: "passport", SIGHTED_STUDENT_CARD: "sighted_tertiary_edu_id", SIGHTED_KEYPASS_CARD: "sighted_keypass_card"…}
 console.log(EvidenceTypeEnum.PASSPORT_VISA); //  passport_visa
-console.log(EvidenceTypeEnum.as); // undefined
+console.log(EvidenceTypeEnum.as); // undefined error:不存在此属性
 ```
