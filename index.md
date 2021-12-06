@@ -806,7 +806,8 @@ tsconfig.js
 - include - 设置需要进行编译的文件，支持路径模式匹配；
 - exclude - 设置无需进行编译的文件，支持路径模式匹配；
 - compilerOptions - 设置与编译流程相关的选项。
-{
+```
+  {
   "compilerOptions": {
   
     /* 基本选项 */
@@ -859,6 +860,7 @@ tsconfig.js
     "emitDecoratorMetadata": true          // 为装饰器提供元数据的支持
   }
 }
+  ```
 
 参考
 https://juejin.cn/post/6981728323051192357#heading-13
