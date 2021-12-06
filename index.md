@@ -770,8 +770,9 @@ DeviceMap.map(item => ({
   i18n: deviceTypeConfig[item.type as DeviceType] // DeviceMap的type值只可能是DeviceType中的值
 }))
 
-keyof
-// keyof 与 Object.keys 略有相似，只不过 keyof 取 interface 的键
+# keyof
+```
+  // keyof 与 Object.keys 略有相似，只不过 keyof 取 interface 的键
 interface Person {
   name: string;
   age: number;
@@ -789,9 +790,11 @@ const obj = {
   age:12
 }
 console.log(get(obj,'name'))
+  ```
 
-typeof
-// typeof 关键词除了做类型保护 还可以从实现推出类型
+# typeof
+```
+  // typeof 关键词除了做类型保护 还可以从实现推出类型
 interface Hero {
   name: string;
   skill: string;
@@ -801,6 +804,7 @@ const zed: Hero = { name: "影流之主", skill: "影子" };
 type LOL = typeof zed; // type LOL = Hero
 const ahri: LOL = { name: "阿狸", skill: "魅惑" };
 
+  ```
 tsconfig.js
 - files - 设置要编译的文件的名称；
 - include - 设置需要进行编译的文件，支持路径模式匹配；
