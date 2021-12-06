@@ -4,7 +4,7 @@
 版本：5+
 测试：https://jsfiddle.net/mweststrate/wv3yopo0/
 React 和 MobX 是一对强力组合。React 通过提供机制把应用状态转换为可渲染组件树并对其进行渲染。而MobX提供机制来存储和更新应用状态供 React 使用。
-![avatar](https://bytedance.feishu.cn/de7e3424-9b96-4d92-8f55-9d4169785fa6)
+![avatar](https://camo.githubusercontent.com/672adf910d218c424749a266cbc839e03fa319fe5e0928b37ad45884ab08b7aa/687474703a2f2f7374617469632e7a7962756c756f2e636f6d2f677979696e2f6577696476637036396d3573633635636832326538697a352f696d6167652e706e67)
 
 # 入门
 ```
