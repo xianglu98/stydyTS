@@ -143,8 +143,6 @@ x = [10, 'hello']; // Error
 let x: [string, number?]; 
 x = ['hello']
 x = ['hi', 2]
-
-```
 // 使用2:解构赋值
 let employee: [number, string] = [1, "Semlinker"];
 let [id, username] = employee;
@@ -158,7 +156,11 @@ console.log(restTuple[1]);
 // 使用4：只读的元组类型
 const point: readonly [number, number] = [10, 20];
 
-枚举
+```
+
+
+# 枚举
+```
 // 使用1:普通枚举 初始值默认为 0 其余的成员按顺序每次增长1
 enum Color {
   RED, //0
@@ -202,10 +204,12 @@ DeviceMap.map(item => ({
   ...item,
   i18n: deviceTypeConfig[item.type as DeviceType] // DeviceMap的type值可能是DeviceType中的值
 }))
+```
 
-any/unknown/never/void
-any
+## any/unknown/never/void
+# any
 任何类型都可以归类于any类型。
+```
 let x:any = 1
 // 任何类型都可以赋值给any
 x = '1'
@@ -213,18 +217,22 @@ x = {}
 // any可以赋值给任何类型
 let y:string = x;
 console.log(y, typeof y) //{},  "object"
+```
 
-unknown
+# unknown
 any权限太大，因此引入了unknown。
+```
 let x:unknown = 1
 // 任何类型都可以赋值给unknown
 x = '1'
 // unknown只可以赋值给any、unknown
 let y:string = x; // error
 let z:any = x;
+```
 
-never
-never类型表示那些用不存在的值的类型。
+## never
+# never类型表示那些用不存在的值的类型。
+```
 // 使用1:异常
 function err(msg: string): never { // OK
   throw new Error(msg); 
@@ -248,9 +256,11 @@ function controlFlowAnalysisWithNever(foo: Foo) {
     const check: never = foo;
   }
 }
+```
 
-void
+# void
 void表示没有任何类型，只能赋值null和undefined。
+```
 // 使用1
 let x:void;
 x = null;
@@ -260,17 +270,21 @@ x = undefined;
 function fun(a:number,b:string):void{
   console.log(a+b)
 }
+```
 
-类型推断/类型断言/非空断言/字面量类型
-类型推断
+## 类型推断/类型断言/非空断言/字面量类型
+# 类型推断
+```
 在 TypeScript 中，具有初始化值的变量、有默认值的函数参数、函数返回的类型都可以根据上下文推断出来。
 let a  = 'hello'; // 推断为string
 
 function add(a:number,b:number){
   return a + b  // 推断返回值为number
 }
+```
 
-类型断言
+# 类型断言
+```
 // as 语法
 let a: any = "this is a string";
 let len: number = (a as string).length; // a.length
@@ -278,24 +292,32 @@ let len: number = (a as string).length; // a.length
 // 尖括号：不推荐，和react的jsx语法冲突
 let a: any = "this is a string";
 let len: number = (<string>a).length;
+```
 
-非空断言
-let flag: null | undefined | string;
+# 非空断言
+```
+  let flag: null | undefined | string;
 flag!.toString(); // ok
 flag.toString(); // error
 
-字面量类型
-let str: "hello" = "hello"; // 相当于只读
+  ```
+# 字面量类型
+```
+  let str: "hello" = "hello"; // 相当于只读
 str = 'hi' // error
+  ```
 
-联合类型和交叉类型
-联合类型表示取值可以为多种类型中的一种，使用 | 分隔每个类型。
-let a: string | number;
+## 联合类型和交叉类型
+# 联合类型表示取值可以为多种类型中的一种，使用 | 分隔每个类型。
+```
+  let a: string | number;
 a = 'hello'; // OK
 a = 1; // OK
+  ```
 
 交叉类型是将多个类型合并为一个类型，它包含了所需的所有类型的特性，使用&定义交叉类型。
-// type
+```
+  // type
 type Flag1 = { x: number };
 type Flag2 = Flag1 & { y: string };
 
@@ -321,9 +343,11 @@ const staff: IStaff = {
   age: 33,
   companyId: 'EFT'
 };
+  ```
 
-类型别名和接口
-// type：类型别名用来给一个类型起个新名字
+# 类型别名和接口
+  ```
+  // type：类型别名用来给一个类型起个新名字
 // 使用1:基本使用
 type Message = string | string[];
 
@@ -369,10 +393,13 @@ interface PointX {
 interface Point extends PointX {
     y: number
 }
+  ```
 
-泛型
-多个类型参数
-function func <T, U>(value: T, message: U) : T {
+
+## 泛型
+# 多个类型参数
+```
+  function func <T, U>(value: T, message: U) : T {
   console.log(message);
   return value;
 }
@@ -380,8 +407,10 @@ console.log(func<number, string>(68, "Semlinker"));
 // 也可以写成：类型推断
 console.log(func(68, "Semlinker"));
 
-泛型约束
-interface Lengthwise {
+  ```
+# 泛型约束
+  ```
+  interface Lengthwise {
   length: number;
 }
 
@@ -389,9 +418,12 @@ function identity<T extends Lengthwise>(arg: T): T {
   console.log(arg.length);
   return arg;
 }
+  ```
 
-泛型别名和泛型接口
-// 泛型别名
+
+# 泛型别名和泛型接口
+```
+  // 泛型别名
 type Cart<T> = { list: T[] };
 let cart: Cart<string> = { list: ["1"] };
 
@@ -402,9 +434,11 @@ interface Cart<T> {
 let cart: Cart<{ name: string; price: number }> = {
   list: [{ name: "hello", price: 10 }],
 };
+  ```
 
-泛型类
-class MyArray<T> {
+# 泛型类
+```
+  class MyArray<T> {
   private list: T[] = [];
   add(value: T) {
     this.list.push(value);
@@ -425,46 +459,60 @@ arr.add(2);
 arr.add(3);
 let res = arr.getMax();
 console.log(res);
+  ```
 
-函数
-函数定义
-// 指定参数类型和返回值类型
+## 函数
+# 函数定义
+```
+  // 指定参数类型和返回值类型
 function hello(name: string): void {
   console.log("hello", name);
 }
 hello("hahaha");
+  ```
 
-函数表达式
-type SumFunc = (x: number, y: number) => number;
+# 函数表达式
+  ```
+  type SumFunc = (x: number, y: number) => number;
 
 let sum: SumFunc = function (a, b) {
   return a + b;
 };
+  ```
 
-可选参数
-// 可以1个或多个，必须相连且最后一个是可选参数
+
+# 可选参数
+  ```
+  // 可以1个或多个，必须相连且最后一个是可选参数
 function print(name: string, age?: number): void {
   console.log(name, age);
 }
 print("hahaha");
+  ```
 
-默认参数
-// 可以1个或多个，必须相连且最后一个是可选参数
+
+# 默认参数
+```
+  // 可以1个或多个，必须相连且最后一个是可选参数
 function print(name: string, age?:number=18): void {
   console.log(name, age);
 }
 print("hahaha");
+  ```
 
-剩余参数
-function push(arr: any[], ...items: any[]) {
+# 剩余参数
+```
+  function push(arr: any[], ...items: any[]) {
     arr.push(...items)
 }
 let a:any = [];
 push(a, 1, 2, 3);
 console.log(a)
+  ```
 
-函数重载
-let obj: any = {}; // 不可以是 let obj:object = {}，不然obj.name访问会报错
+# 函数重载
+```
+  let obj: any = {}; // 不可以是 let obj:object = {}，不然obj.name访问会报错
 function attr(val: string): void;
 function attr(val: number): void;
 function attr(val: any): void {
@@ -478,13 +526,15 @@ attr("hahaha");
 attr(9);
 attr(true); // error
 console.log(obj);
+  ```
 
-类
-成员属性和成员方法
+## 类
+# 成员属性和成员方法
 成员属性不加修饰符默认为public，可以访问和修改。public表示类对象、子类、类本身可以访问和修改；protected表示子类、类本身可以访问和修改；private表示类本身可以访问和修改。
 readonly修饰符表示只读，此属性无setter；类中的成员属性可以通过getter和setter来实现数据的封装，但是其命名不能和成员属性相同。
 !表示对象实例化时未赋值。
-class Person {
+```
+  class Person {
   private readonly _name: string; 
   protected _age:number;
   // constructor未赋值
@@ -524,10 +574,12 @@ p.age = 20
 p.weight = '120斤'
 console.log(p)
 // p.name = 'lisi' // error
+  ```
 
-静态属性和静态方法
+# 静态属性和静态方法
 静态属性和静态方法时属于类本身的属性和方法，不属于对象。
-class Person {
+```
+  class Person {
   static count = 0;
   name:string;
   age:number;
@@ -544,10 +596,12 @@ class Person {
 const p1 = new Person('zhangsan',18)
 const p2 = new Person('zhangsan',18)
 Person.printCount()
+  ```
 
-装饰器
-类装饰器
-// 当装饰器作为修饰类的时候，会把构造器传递进去
+## 装饰器
+# 类装饰器
+```
+  // 当装饰器作为修饰类的时候，会把构造器传递进去
 function addNameEat(constructor: Function) {
   constructor.prototype.name = "zhangsan";
   constructor.prototype.eat = function () {
@@ -565,8 +619,10 @@ class Person {
 let p: Person = new Person();
 console.log(p.name);
 p.eat();
+  ```
 
-// 使用装饰器工厂，可以传递额外参数
+```
+  // 使用装饰器工厂，可以传递额外参数
 function addNameEatFactory(name: string) {
   return function (constructor: Function) {
     constructor.prototype.name = name;
@@ -584,9 +640,11 @@ class Person {
 let p: Person = new Person();
 console.log(p.name);
 p.eat();
+  ```
 
-属性装饰器
-// 属性装饰器：修饰类的属性，传入2个参数，第一个参数对于静态成员来说是类的构造函数，对于实例成员是类的原型对象；第二个参数是属性的名称
+# 属性装饰器
+```
+  // 属性装饰器：修饰类的属性，传入2个参数，第一个参数对于静态成员来说是类的构造函数，对于实例成员是类的原型对象；第二个参数是属性的名称
 //修饰实例属性
 function upperCase(target: any, propertyKey: string) {
   let value = target[propertyKey];
@@ -615,9 +673,11 @@ class Person {
 let p: Person = new Person();
 p.name = "world";
 console.log(p.name);
+  ```
 
-方法装饰器
-// 装饰类的方法。它接收三个参数：
+# 方法装饰器
+```
+  // 装饰类的方法。它接收三个参数：
 //   target: Object - 对于静态成员来说是类的构造函数，对于实例成员是类的原型对象
 //   propertyKey: string | symbol - 方法名
 //   descriptor: TypePropertyDescript - 属性描述符
@@ -669,8 +729,10 @@ console.log(calc.loggedOutput);
   "output": 22,
   "timestamp": "2021-11-30T03:05:20.523Z"
 }] 
+  ```
 
-// 可以使用装饰器工厂函数，额外传递参数
+```
+  // 可以使用装饰器工厂函数，额外传递参数
 function LogOutput(params: any) {
   // descriptor:  {"writable": true,"enumerable": false"configurable": true }
   // oldMethod: double(num) {return num * 2;}
@@ -705,22 +767,26 @@ calc.double(10)
 calc.double(11)
 console.log(calc.name);  // hello
 console.log(calc.loggedOutput); 
+  ```
 
-ts工具类
-Partial/Required
-// Partial<T> 将类型的属性变成可选
+## ts工具类
+# Partial/Required
+```
+  // Partial<T> 将类型的属性变成可选
 // keyof T 拿到 T 的所有属性名，然后使用 in 进行遍历，将值赋给 P，最后通过 T[P] 取得相应的属性值的类。中间的 ? 号，用于将所有属性变为可选
 type Partial<T> = {
   [P in keyof T]?: T[P];
 };
-
-// Required将类型的属性变成必选
+  // Required将类型的属性变成必选
 // 其中 -? 是代表移除 ? 这个 modifier 的标识。
 type Required<T> = { 
     [P in keyof T]-?: T[P] 
 };
 
-// 使用
+```
+
+```
+  // 使用
 interface UserInfo {
     id: string;
     name: string;
@@ -729,15 +795,19 @@ type NewUserInfo = Partial<UserInfo>;
 const zhangSan: NewUserInfo = {
     name: 'zhangsan'
 }
+  ```
 
-Record
-// Record<K extends keyof any, T> 的作用是将 K 中所有的属性的值转化为 T 类型
+# Record
+```
+  // Record<K extends keyof any, T> 的作用是将 K 中所有的属性的值转化为 T 类型
 
 type Record<K extends keyof any, T> = {
     [P in K]: T;
 };
 
-interface PageInfo {
+  ```
+```
+  interface PageInfo {
   title: string;
 }
 
@@ -769,6 +839,8 @@ DeviceMap.map(item => ({
   ...item,
   i18n: deviceTypeConfig[item.type as DeviceType] // DeviceMap的type值只可能是DeviceType中的值
 }))
+  ```
+  
 
 # keyof
 ```
@@ -866,9 +938,9 @@ tsconfig.js
 }
   ```
 
-参考
-https://juejin.cn/post/6981728323051192357#heading-13
-https://juejin.cn/post/7031787942691471396#heading-6
-https://juejin.cn/post/7018805943710253086#heading-31
-https://juejin.cn/post/6844904182843965453#heading-37
+# 参考
+# https://juejin.cn/post/6981728323051192357#heading-13
+# https://juejin.cn/post/7031787942691471396#heading-6
+# https://juejin.cn/post/7018805943710253086#heading-31
+# https://juejin.cn/post/6844904182843965453#heading-37
 
