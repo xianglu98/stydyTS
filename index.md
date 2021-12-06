@@ -27,31 +27,38 @@ console.log(EvidenceTypeEnum.PASSPORT_VISA); //  passport_visa
 console.log(EvidenceTypeEnum.as); // undefined error:不存在此属性
 ```
 
-TypeScirpt学习笔记
-TypeScript学习笔记
+## TypeScirpt学习笔记
+# TypeScript学习笔记
 TypeScript是JavaScript的超集，添加了静态类型检查和OOP特性。
 TypeScript的云环境：https://www.typescriptlang.org/zh/play
 [TOC]
 基础类型
+```
 let str: string = "jimmy";
 let num: number = 24;
 let bool: boolean = false;
 let u: undefined = undefined;
 let n: null = null;
 let sym: symbol = Symbol("me"); 
+```
 
 默认情况下 null 和 undefined 是所有类型的子类型，即可以把 null 和 undefined 赋值给其他类型。
+```
 let str:string = "666";
 // strict模式下会报错，不建议使用
 str = null;
 str= undefined;
+```
 
 原始类型 number、string、boolean、symbol 混淆的首字母大写的 Number、String、Boolean、Symbol 类型，后者是相应原始类型的包装对象。在声明类型时，不要使用包装对象来注释值的类型。
+```
 let Num: Number = 2;
 let num:number = Num;  // Type 'Number' is not assignable to type 'number'.
 
+```
 引用类型
-对象
+# 对象
+```
 // 对象
 // 使用1
 let obj: object = {x: 1,y:'2'};
@@ -110,16 +117,21 @@ let obj: Object; // let obj:{};
 obj = 1; // ok
 obj = {}; // ok
 obj = null; // strict:error
+```
 
-数组
+
+# 数组
+```
 // 数组
 let arr:string[] = ["1","2"]; // 常用
 let arr:Array<string> = ["1","2"]；
 let arr = new Array<any>();
+```
 
 let arr:(number | string)[] = [1,'2'] // 联合类型
 
-元组
+# 元组
+```
 // 元组
 // 使用1:基本使用
 let x: [string, number]; 
@@ -132,6 +144,7 @@ let x: [string, number?];
 x = ['hello']
 x = ['hi', 2]
 
+```
 // 使用2:解构赋值
 let employee: [number, string] = [1, "Semlinker"];
 let [id, username] = employee;
